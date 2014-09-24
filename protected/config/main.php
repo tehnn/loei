@@ -9,6 +9,7 @@ return array(
     'name' => 'My DataCenter',
     'timeZone' => 'Asia/Bangkok',
     'theme'=>'mytheme',
+    'language'=>'th',
     // preloading 'log' component
     'preload' => array('log', 'booster'),
     // autoloading model and component classes
