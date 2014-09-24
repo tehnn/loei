@@ -15,7 +15,7 @@ class UserIdentity extends CUserIdentity {
             $this->errorCode = self::ERROR_USERNAME_INVALID;
         } else if ($user->password !== $this->password) {
             $this->errorCode = self::ERROR_PASSWORD_INVALID;
-        } else if ($user->role === '') {
+        } else if ($user->role == '' or $user->role === NULL) {
             $this->errorCode = self::ERROR_USER_NOTAUTH;
         } else {
 

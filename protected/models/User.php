@@ -7,9 +7,10 @@
  * @property string $username
  * @property string $password
  * @property string $fullname
+ * @property string $officeid
  * @property string $role
- * @property integer $countlogin
  * @property string $lastlogin
+ * @property integer $countlogin
  */
 class User extends CActiveRecord
 {
@@ -30,11 +31,11 @@ class User extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('countlogin', 'numerical', 'integerOnly'=>true),
-			array('username, password, fullname, lastlogin', 'length', 'max'=>255),
+			array('username, password, fullname, officeid, lastlogin', 'length', 'max'=>255),
 			array('role', 'length', 'max'=>5),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('username, password, fullname, role, countlogin, lastlogin', 'safe', 'on'=>'search'),
+			array('username, password, fullname, officeid, role, lastlogin, countlogin', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -55,12 +56,13 @@ class User extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'username' => 'ชื่อผู้ใช้',
+			'username' => 'Username',
 			'password' => 'Password',
 			'fullname' => 'Fullname',
+			'officeid' => 'Officeid',
 			'role' => 'Role',
-			'countlogin' => 'Countlogin',
 			'lastlogin' => 'Lastlogin',
+			'countlogin' => 'Countlogin',
 		);
 	}
 
@@ -85,9 +87,10 @@ class User extends CActiveRecord
 		$criteria->compare('username',$this->username,true);
 		$criteria->compare('password',$this->password,true);
 		$criteria->compare('fullname',$this->fullname,true);
+		$criteria->compare('officeid',$this->officeid,true);
 		$criteria->compare('role',$this->role,true);
-		$criteria->compare('countlogin',$this->countlogin);
 		$criteria->compare('lastlogin',$this->lastlogin,true);
+		$criteria->compare('countlogin',$this->countlogin);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

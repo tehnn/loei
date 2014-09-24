@@ -2,8 +2,8 @@
 <htm>    
     <head>
         <meta charset="UTF-8">
-          <link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/mycss.css" rel="stylesheet" /> 
-      
+        <link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/mycss.css" rel="stylesheet" /> 
+
         <title>
             <?php
             echo Yii::app()->name;
@@ -26,7 +26,7 @@
                     <a class="navbar-brand" href="#">
                         <i class='glyphicon glyphicon-home'></i>
                         <?php
-                            echo Yii::app()->name;
+                        echo Yii::app()->name;
                         ?>
                     </a>
                 </div>
@@ -49,29 +49,45 @@
                             </ul>
                         </li>
                     </ul>
-                  
+
                     <ul class="nav navbar-nav navbar-right">
                         
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">ตัวเลือก <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="<?php echo $this->createUrl('Site/Login');?>">
-                                        <i class='glyphicon glyphicon-user'></i>
-                                        เข้าระบบ
-                                    </a>
-                                </li>
-                                
-                                <li class="divider"></li>
-                                <li><a href="#">เกี่ยวกับเรา</a></li>
-                            </ul>
+                        <?php if(Yii::app()->user->getState('role')=='admin'): ?>
+                        <li><a href="#">เมนูสำหรับ Admin เท่านั้น</a></li>
+                       <?php endif; ?> 
+
+                        <?php if(Yii::app()->user->isGuest): ?>
+                        <li>
+                            <a href="<?php echo $this->createUrl('Site/Login'); ?>">
+                                <i class='glyphicon glyphicon-user'></i>
+                                เข้าระบบ
+                            </a>
                         </li>
+                        <?php endif; ?>
+                        
+                        <?php if(!Yii::app()->user->isGuest): ?>
+                          <li>
+                            <a href="<?php echo $this->createUrl('Site/Logout'); ?>">
+                                <i class='glyphicon glyphicon-eject'></i>
+                                <?php echo Yii::app()->user->getState('fullname');  ?>
+                                ออกระบบ
+                            </a>
+                        </li>
+                        <?php endif; ?>
+
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
 
-        <div>breacrump</div>
+         <?php if (isset($this->breadcrumbs)): ?>
+            <?php
+            $this->widget('booster.widgets.TbBreadcrumbs', array(
+                'links' => $this->breadcrumbs,
+            ));
+            ?><!-- breadcrumbs -->
+        <?php endif; ?>   
+        
         <div><?php echo $content; ?></div>
         <div>footer</div>
     </body>
