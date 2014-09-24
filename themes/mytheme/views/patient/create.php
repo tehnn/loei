@@ -1,13 +1,10 @@
 <?php
 $this->breadcrumbs=array(
-	'Patients'=>array('index'),
-	'Create',
+	'รายชื่อผู้ป่วย'=>array('index'),
+	'เพิ่ม',
 );
 
-$this->menu=array(
-array('label'=>'List Patient','url'=>array('index')),
-array('label'=>'Manage Patient','url'=>array('admin')),
-);
+
 ?>
 
 

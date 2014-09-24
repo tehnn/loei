@@ -46,7 +46,7 @@
             <?php echo CHtml::activeLabel($model, 'disease', array('style' => 'display:block')); ?>
             <?php
             $list = CHtml::listData(Disease::model()->findAll(), 'code', 'disease');
-            echo CHtml::activeDropDownList($model, 'disease', $list, array('empty' => '--  คำนำหน้า  --'));
+            echo CHtml::activeDropDownList($model, 'disease', $list, array('empty' => '--  โรค  --'));
             ?>
         </span> 
 
@@ -55,16 +55,22 @@
         <span style="display:inline-block">
             <?php echo CHtml::activeLabel($model, 'datereg', array('style' => 'display:block')); ?>
             <?php
-            $this->widget('booster.widgets.TbDatePicker', array(
+            $this->widget('zii.widgets.jui.CJuiDatePicker', array(
                 'model' => $model,
                 'attribute' => 'datereg',
+                'value' => $model->datereg,
                 'options' => array(
-                    'language' => 'th',
-                    'autoclose' => true,
-                    'format' => 'yyyy-mm-dd'
-                )
-                    )
-            );
+                    'dateFormat' => 'yy-mm-dd',
+                    'changeMonth' => true,
+                    'changeYear' => true,                    
+                    'defaultDate' => $model->datereg,
+                    'showButtonPanel' => true,
+                    'autoSize' => true,
+                ),
+                'htmlOptions' => array(
+                    'style' => 'height:20px;',
+                ),
+            ));
             ?>
 
         </span> 
