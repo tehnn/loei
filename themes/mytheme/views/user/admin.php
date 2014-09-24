@@ -4,11 +4,6 @@ $this->breadcrumbs = array(
     'จัดการ',
 );
 
-$this->menu = array(
-    array('label' => 'List User', 'url' => array('index')),
-    array('label' => 'Create User', 'url' => array('create')),
-);
-
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
 $('.search-form').toggle();
@@ -26,6 +21,7 @@ return false;
 
 
 <?php echo CHtml::link('Advanced Search', '#', array('class' => 'search-button btn')); ?>
+
 <div class="search-form" style="display:none">
     <?php
     $this->renderPartial('_search', array(
@@ -33,6 +29,11 @@ return false;
     ));
     ?>
 </div><!-- search-form -->
+<br>
+<a class="btn btn-danger" href="<?=$this->createUrl('User/Create');?>">
+    <i class="glyphicon glyphicon-plus-sign"></i> 
+    เพิ่มผู้ใช้งาน
+</a>
 
 <?php
 $this->widget('booster.widgets.TbGridView', array(
@@ -41,14 +42,15 @@ $this->widget('booster.widgets.TbGridView', array(
     'filter' => $model,
     'columns' => array(
         'username',
-        'password',
+        array(
+            'name'=>'password',
+            'visible'=>Yii::app()->user->getState('role')=='admin'
+        ),
         'fullname',
         'officeid',
         'role',
         'lastlogin',
-        /*
-          'countlogin',
-         */
+        'countlogin',
         array(
             'class' => 'booster.widgets.TbButtonColumn',
         ),

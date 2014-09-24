@@ -88,8 +88,12 @@
             ?><!-- breadcrumbs -->
         <?php endif; ?>   
         
-        <div><?php echo $content; ?></div>
-        <div>footer</div>
+            <div style="padding-left: 20px;padding-right: 20px"><?php echo $content; ?></div>
+            <div class="well" style="text-align: center">
+                โรงพยาบาลของฉัน
+                <br>
+                โทร 1669
+            </div>
     </body>
 
 </htm>
