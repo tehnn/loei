@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs = array(
-    'Users' => array('index'),
-    'Manage',
+    'ผู้ใช้' => array('index'),
+    'จัดการ',
 );
 
 $this->menu = array(

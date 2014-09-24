@@ -53,7 +53,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         
                         <?php if(Yii::app()->user->getState('role')=='admin'): ?>
-                        <li><a href="#">เมนูสำหรับ Admin เท่านั้น</a></li>
+                        <li><a href="<?=Yii::app()->createUrl('User/Admin');?>">เมนูสำหรับ Admin เท่านั้น</a></li>
                        <?php endif; ?> 
 
                         <?php if(Yii::app()->user->isGuest): ?>
