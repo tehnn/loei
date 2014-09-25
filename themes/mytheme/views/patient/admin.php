@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs = array(
-    'Patients' => array('index'),
-    'Manage',
+    'รายชื่อ' => array('index'),
+    'จัดการ'
 );
 
 $this->menu = array(
@@ -32,6 +32,8 @@ return false;
     ));
     ?>
 </div><!-- search-form -->
+<br>
+<a href='index.php?r=Patient/Create' class='btn btn-primary'>เพิ่มผู้ป่วย</a>
 
 <?php
 $this->widget('booster.widgets.TbGridView', array(
@@ -42,6 +44,14 @@ $this->widget('booster.widgets.TbGridView', array(
         'cid',
         'prename',
         'name',
+        
+         array(
+                    'name' => 'name',
+                    'value' => 'CHtml::link($data->name, Yii::app()->createUrl("Patient/Update",array("id"=>$data->cid)))',
+                    'type' => 'raw',
+                    'htmlOptions' => array('style' => 'width:160px'),
+                ),
+        
         'lname',
         'sex',
         'age',

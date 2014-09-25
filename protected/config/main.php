@@ -6,7 +6,7 @@
 // CWebApplication properties can be configured here.
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
-    'name' => 'My DataCenter',
+    'name' => 'I-NCD 1.0',
     'timeZone' => 'Asia/Bangkok',
     'theme' => 'mytheme',
     'language' => 'th',

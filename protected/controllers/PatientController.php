@@ -65,7 +65,7 @@ class PatientController extends Controller {
         if (isset($_POST['Patient'])) {
             $model->attributes = $_POST['Patient'];
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->cid));
+                $this->redirect(array('admin', 'id' => $model->cid));
         }
 
         $this->render('create', array(
