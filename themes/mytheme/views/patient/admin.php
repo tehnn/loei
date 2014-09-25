@@ -39,28 +39,36 @@ return false;
 $this->widget('booster.widgets.TbGridView', array(
     'id' => 'patient-grid',
     'dataProvider' => $model->search(),
-    'filter' => $model,
+    //'filter' => $model,
     'columns' => array(
         'cid',
-        'prename',
+        //'prename',
+        array(
+            'name'=>'prename',
+            'type'=>'raw',
+            'value'=>'CHtml::encode($data->toprename->prename)'
+        ),
+        
+        
         'name',
-        
-         array(
-                    'name' => 'name',
-                    'value' => 'CHtml::link($data->name, Yii::app()->createUrl("Patient/Update",array("id"=>$data->cid)))',
-                    'type' => 'raw',
-                    'htmlOptions' => array('style' => 'width:160px'),
-                ),
-        
+        array(
+            'name' => 'name',
+            'value' => 'CHtml::link($data->name, Yii::app()->createUrl("Patient/Update",array("id"=>$data->cid)))',
+            'type' => 'raw',
+            'htmlOptions' => array('style' => 'width:160px'),
+        ),
         'lname',
         'sex',
         'age',
-        'disease',        
-         array(
-                    'name' => 'disease',
-                    'type' => 'raw',
-                    'value' => 'CHtml::encode($data->todisease->disease)',
-            ),
+        array(
+            'name'=>'disease',
+            'header'=>'รหัสโรคเรื้อรัง HT-DM'
+        ),
+        array(
+            'name' => 'disease',
+            'type' => 'raw',
+            'value' => 'CHtml::encode($data->todisease->disease)',
+        ),
         'datereg',
         array(
             'class' => 'booster.widgets.TbButtonColumn',

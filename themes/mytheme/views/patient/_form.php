@@ -1,7 +1,5 @@
+
 <form method="POST">
-
-
-
     <?php echo CHtml::errorSummary($model); ?>
 
     <div class="form-inline well">

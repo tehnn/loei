@@ -224,3 +224,35 @@ Stack trace:
 REQUEST_URI=/loei/index.php?r=Patient/Admin
 HTTP_REFERER=http://localhost:89/loei/index.php?r=User/Admin
 ---
+2014/09/25 09:40:17 [error] [exception.CException] exception 'CException' with message 'Patient and its behaviors do not have a method or closure named "getData".' in C:\xampp\htdocs\framework\base\CComponent.php:266
+Stack trace:
+#0 C:\xampp\htdocs\framework\db\ar\CActiveRecord.php(227): CComponent->__call('getData', Array)
+#1 C:\xampp\htdocs\framework\zii\widgets\CBaseListView.php(111): CActiveRecord->__call('getData', Array)
+#2 C:\xampp\htdocs\framework\zii\widgets\CBaseListView.php(111): Patient->getData()
+#3 C:\xampp\htdocs\framework\zii\widgets\grid\CGridView.php(339): CBaseListView->init()
+#4 C:\xampp\htdocs\loei\protected\extensions\booster\widgets\TbGridView.php(68): CGridView->init()
+#5 C:\xampp\htdocs\framework\web\CBaseController.php(147): TbGridView->init()
+#6 C:\xampp\htdocs\framework\web\CBaseController.php(172): CBaseController->createWidget('booster.widgets...', Array)
+#7 C:\xampp\htdocs\loei\themes\mytheme\views\patient\admin.php(69): CBaseController->widget('booster.widgets...', Array)
+#8 C:\xampp\htdocs\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#9 C:\xampp\htdocs\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#10 C:\xampp\htdocs\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#11 C:\xampp\htdocs\framework\web\CController.php(782): CController->renderPartial('admin', Array, true)
+#12 C:\xampp\htdocs\loei\protected\controllers\PatientController.php(137): CController->render('admin', Array)
+#13 C:\xampp\htdocs\framework\web\actions\CInlineAction.php(49): PatientController->actionAdmin()
+#14 C:\xampp\htdocs\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#15 C:\xampp\htdocs\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#16 C:\xampp\htdocs\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#17 C:\xampp\htdocs\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#18 C:\xampp\htdocs\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#19 C:\xampp\htdocs\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#20 C:\xampp\htdocs\framework\web\CController.php(291): CFilterChain->run()
+#21 C:\xampp\htdocs\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 C:\xampp\htdocs\framework\web\CWebApplication.php(282): CController->run('admin')
+#23 C:\xampp\htdocs\framework\web\CWebApplication.php(141): CWebApplication->runController('patient/admin')
+#24 C:\xampp\htdocs\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#25 C:\xampp\htdocs\loei\index.php(13): CApplication->run()
+#26 {main}
+REQUEST_URI=/loei/index.php?r=patient/admin
+HTTP_REFERER=http://localhost:89/loei/index.php?r=Patient/Update&id=wddsad
+---

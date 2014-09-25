@@ -52,6 +52,7 @@ class Patient extends CActiveRecord {
         return array(
            
             'todisease' => array(self::BELONGS_TO, 'Disease', 'disease'),
+             'toprename' => array(self::BELONGS_TO, 'Prename', 'prename'),
            
         );
     }
