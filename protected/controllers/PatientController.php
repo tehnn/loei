@@ -29,7 +29,7 @@ class PatientController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update','deletecase'),
+                'actions' => array('create', 'update', 'deletecase','sql'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -112,13 +112,12 @@ class PatientController extends Controller {
         else
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
     }
-    
-    public function actionDeleteCase($cid=null){
-        $this->loadModel($cid)->delete();  
+
+    public function actionDeleteCase($cid = null) {
+        $this->loadModel($cid)->delete();
         $this->redirect(array('Patient/Admin'));
     }
 
-    
     /**
      * Lists all models.
      */
@@ -164,6 +163,22 @@ class PatientController extends Controller {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+
+    public function actionSql() {
+
+        $sql = "SELECT disease,count(cid) as total from patient 
+GROUP BY disease";
+        
+        $rawdata = Yii::app()->db->createCommand($sql)->queryAll();
+        
+        //echo "<pre>";
+        //print_r($rawdata);
+        
+
+       $this->render('v_sql',array(
+           'model'=>$rawdata
+        ));
     }
 
 }
