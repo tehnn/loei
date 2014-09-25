@@ -29,7 +29,7 @@ class PatientController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'deletecase','sql','pdf'),
+                'actions' => array('create', 'update', 'deletecase','sql','pdf','sql2'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -172,14 +172,33 @@ GROUP BY disease";
         
         $rawdata = Yii::app()->db->createCommand($sql)->queryAll();
         
-        //echo "<pre>";
-        //print_r($rawdata);
-        
-
        $this->render('v_sql',array(
            'model'=>$rawdata
         ));
     }
+    
+        public function actionSql2() {
+
+        $sql = "SELECT disease,count(cid) as total from patient 
+GROUP BY disease";
+        
+        $rawdata = Yii::app()->db->createCommand($sql)->queryAll();
+        $model = new CArrayDataProvider($rawdata,array(
+            'totalItemCount' => count($rawdata),
+            'keyField'=>'disease',
+            'sort' => array(
+                'attributes' => array_keys($rawdata[0])
+            )
+        ));
+        
+       $this->render('v_sql2',array(
+           'model'=>$model
+        ));
+    }
+    
+    
+    
+    
     
     public function actionPdf(){
         
@@ -208,11 +227,21 @@ GROUP BY disease";
         $pdf->SetTextColor(80, 80, 80);
         $pdf->AddPage();
 
-       
+               $sql = "SELECT disease,count(cid) as total from patient 
+GROUP BY disease";
+        
+        $rawdata = Yii::app()->db->createCommand($sql)->queryAll();
+        
+        
         $tbl = '<table cellspacing="0" cellpadding="4" border="1">';
-        $tbl.= "<tr><th>รหัส</th><th>ชื่อ</th><th>จำนวน</th></tr>";
-
-
+        $tbl.= "<tr><th>ลำดับ</th><th>รหัสโรค</th><th>จำนวน (คน)</th></tr>";
+        $i=0;
+        foreach($rawdata as $data){
+            $disease = $data['disease'];
+            $total = $data['total'];
+            $i++;
+            $tbl.= "<tr><td>$i</td><td>$disease</td><td>$total</td></tr>";
+        }
         $tbl.='</table>';
 
         $pdf->writeHTML($tbl, true, false, true, false, '');
