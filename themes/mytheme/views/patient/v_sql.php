@@ -8,7 +8,7 @@ $cs->registerScriptFile($dir.'/js/excellentexport.js');
 <div>
     <a download="data.xls" href="#" onclick="return ExcellentExport.excel(this, 'datatable', 'Sheet1');" href='#' class='btn btn-danger'>Excel</a>
     <a download="data.csv" href="#" onclick="return ExcellentExport.csv(this, 'datatable','|');" href='#' class='btn btn-info'>CSV</a>
-    <a href='#' class='btn btn-default'>PDF</a>   
+    <a href='<?=$this->createUrl('Patient/Pdf')?>' class='btn btn-default'>PDF</a>   
     
 </div>
 <br>

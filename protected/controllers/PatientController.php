@@ -29,7 +29,7 @@ class PatientController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'deletecase','sql'),
+                'actions' => array('create', 'update', 'deletecase','sql','pdf'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -179,6 +179,54 @@ GROUP BY disease";
        $this->render('v_sql',array(
            'model'=>$rawdata
         ));
+    }
+    
+    public function actionPdf(){
+        
+
+      
+        // ส่วนแสดง PDF
+
+        $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        spl_autoload_register(array('YiiBase', 'autoload'));
+        //เพิ่ม  font
+        //$fontname = $pdf->addTTFfont('pdffont/FONTNONGNAM.TTF', 'TrueTypeUnicode', '', 32);
+        // set document information
+
+        $pdf->SetCreator(PDF_CREATOR);
+        $pdf->SetTitle("UTHN PHNU");
+        $pdf->SetHeaderData('', 0, "ชื่อรายงาน", "เวลาพิมพ์ " . date('Y-m-d H:i:s') . "");
+        $pdf->setHeaderFont(Array('freeserif', '', '14'));
+        $pdf->setFooterFont(Array('freeserif', '', '10'));
+        $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+        $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+        $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+        $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+        $pdf->SetFont('freeserif', '', 12);
+        //เรียกใช้ font ที่เพิ่ม
+        //$pdf->SetFont($fontname, '', 14, '', false);
+        $pdf->SetTextColor(80, 80, 80);
+        $pdf->AddPage();
+
+       
+        $tbl = '<table cellspacing="0" cellpadding="4" border="1">';
+        $tbl.= "<tr><th>รหัส</th><th>ชื่อ</th><th>จำนวน</th></tr>";
+
+
+        $tbl.='</table>';
+
+        $pdf->writeHTML($tbl, true, false, true, false, '');
+
+        // reset pointer to the last page
+        $pdf->lastPage();
+
+        //Close and output PDF document
+
+        $pdf->Output('filename.pdf', 'I'); // I= Preview , D=Download
+
+        Yii::app()->end();
+
+        
     }
 
 }
