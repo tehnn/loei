@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'รายชื่อผู้ป่วย'=>array('index'),
+	'รายชื่อผู้ป่วย'=>array('admin'),
 	'เพิ่ม',
 );
 

@@ -28,6 +28,8 @@
             <?php echo CHtml::activeTextField($model, 'lname'); ?>
         </span>
 
+          <br>
+        
         <span style="display:inline-block">
             <?php echo CHtml::activeLabel($model, 'sex', array('style' => 'display:block')); ?>
             <?php
@@ -41,7 +43,7 @@
             <?php echo CHtml::activeTextField($model, 'age'); ?>
         </span>
         
-        <br>
+      
         <span style="display:inline-block">
             <?php echo CHtml::activeLabel($model, 'disease', array('style' => 'display:block')); ?>
             <?php
@@ -68,7 +70,7 @@
                     'autoSize' => true,
                 ),
                 'htmlOptions' => array(
-                    'style' => 'height:20px;',
+                    'style' => 'height:20px;width:150px',
                 ),
             ));
             ?>
