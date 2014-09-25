@@ -50,10 +50,10 @@ $this->widget('booster.widgets.TbGridView', array(
         ),
         
         
-        'name',
+        //'name',
         array(
             'name' => 'name',
-            'value' => 'CHtml::link($data->name, Yii::app()->createUrl("Patient/Update",array("id"=>$data->cid)))',
+            'value' => 'CHtml::link($data->name, Yii::app()->createUrl("Patient/Update",array("cid"=>$data->cid)))',
             'type' => 'raw',
             'htmlOptions' => array('style' => 'width:160px'),
         ),

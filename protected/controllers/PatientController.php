@@ -29,7 +29,7 @@ class PatientController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update'),
+                'actions' => array('create', 'update','deletecase'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -78,8 +78,8 @@ class PatientController extends Controller {
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id the ID of the model to be updated
      */
-    public function actionUpdate($id) {
-        $model = $this->loadModel($id);
+    public function actionUpdate($cid) {
+        $model = $this->loadModel($cid);
 
 // Uncomment the following line if AJAX validation is needed
 // $this->performAjaxValidation($model);
@@ -112,7 +112,13 @@ class PatientController extends Controller {
         else
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
     }
+    
+    public function actionDeleteCase($cid=null){
+        $this->loadModel($cid)->delete();  
+        $this->redirect(array('Patient/Admin'));
+    }
 
+    
     /**
      * Lists all models.
      */

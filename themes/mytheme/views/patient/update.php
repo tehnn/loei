@@ -16,7 +16,7 @@ $this->breadcrumbs = array(
             <a href='' class='btn btn-success'>ปุ่มที่ 1</a>
             <a href='' class='btn btn-primary'>ปุ่มที่ 1</a>
             <a href='' class='btn btn-warning'>ปุ่มที่ 1</a>
-            <a href='' class='btn btn-danger'>ปุ่มที่ 1</a>
+            <a href='#' onclick='del()' class='btn btn-danger'>ลบข้อมูล</a>
 
         </div>
         <br>
@@ -25,3 +25,11 @@ $this->breadcrumbs = array(
 
     </div>
 </div>
+
+<script>
+    function del(){
+        if(confirm('Are you sure?')){
+            window.location='index.php?r=Patient/DeleteCase&cid=<?=$model->cid?>'
+        }
+    }
+</script>
